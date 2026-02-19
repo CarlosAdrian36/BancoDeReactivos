@@ -137,7 +137,7 @@ const toggleTheme = () => {
 
     <!-- Theme toggle -->
 
-    <label class="swap swap-rotate fixed bottom-6 right-6 btn btn-circle btn-outline">
+    <label class="swap swap-rotate fixed bottom-6 right-6">
       <!-- this hidden checkbox controls the state -->
       <input type="checkbox" class="theme-controller" value="dark" />
 
