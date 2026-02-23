@@ -16,9 +16,3 @@
     </div>
   </div>
 </template>
-<style scoped>
-.glass-card {
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-}
-</style>
