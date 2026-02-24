@@ -2,15 +2,18 @@
 import { ref } from 'vue'
 import Experimental from './experimental.vue'
 
-const isDark = ref(false)
+// const isDark = ref(true)
 
 const toggleTheme = () => {
-  isDark.value = !isDark.value
+  const html = document.documentElement
+  const current = html.getAttribute('data-theme')
+
+  html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark')
 }
 </script>
 
 <template>
-  <Experimental :enabled="true" :dark="isDark" />
+  <Experimental :enabled="true" />
 
   <!-- Toggle tipo swap -->
   <label class="fixed top-6 right-6 swap swap-rotate z-50 cursor-pointer glass-button btn-circle">

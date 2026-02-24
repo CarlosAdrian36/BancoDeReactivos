@@ -1,42 +1,13 @@
-<script setup>
-import { ref, onMounted } from 'vue'
-defineProps({
-  enabled: {
-    type: Boolean,
-    default: true,
-  },
-})
-
-const islight = ref(false)
-
-const temedetectado = () => {
-  const theme = document.documentElement.getAttribute('data-theme')
-  islight.value = theme === 'light'
-}
-onMounted(() => {
-  temedetectado()
-
-  const observer = new MutationObserver(() => {
-    temedetectado()
-  })
-
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['data-theme'],
-  })
-})
-</script>
-
 <template>
-  <div
+  <!-- <div
     v-if="enabled"
     class="background-wrapper pointer-events-none fixed inset-0 -z-10"
     :class="{ light: islight }"
-  >
-    <div class="mesh-base"></div>
-    <div class="mesh-glow mesh-glow-primary"></div>
-    <div class="mesh-glow mesh-glow-secondary"></div>
-  </div>
+  > -->
+  <!-- <div class="mesh-base"></div> -->
+  <div class="mesh-glow mesh-glow-primary"></div>
+  <div class="mesh-glow mesh-glow-secondary"></div>
+  <!-- </div> -->
 </template>
 
 <style scoped>
@@ -52,7 +23,7 @@ onMounted(() => {
 
   background-image:
     radial-gradient(at 0% 0%, hsla(220, 100%, 15%, 1) 0, transparent 50%),
-    radial-gradient(at 100% 0%, hsla(20, 90%, 35%, 1) 0, transparent 50%),
+    radial-gradient(at 100% 0%, rgb(233, 195, 8) 0, transparent 50%),
     radial-gradient(at 100% 100%, hsla(210, 100%, 45%, 1) 0, transparent 50%),
     radial-gradient(at 0% 100%, hsla(230, 100%, 10%, 1) 0, transparent 50%);
 
