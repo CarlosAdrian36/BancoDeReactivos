@@ -26,24 +26,24 @@ const handleSubmit = () => {
       <div class="flex flex-col items-center gap-6 mb-10">
         <div class="flex items-center justify-center gap-4">
           <div
-            class="h-12 px-3 flex items-center justify-center bg-white/20 dark:bg-white/10 rounded-lg"
+            class="h-12 px-3 flex items-center justify-center bg-warning/50 rounded-lg"
           >
             <span class="text-base-content font-bold text-xl tracking-tighter"> UANL </span>
           </div>
 
-          <div class="h-8 bg-white/30 dark:bg-white/20"></div>
+          <div class="h-8 w-px bg-white/30 dark:bg-white/20"></div>
 
           <div class="flex items-center gap-2">
-            <i class="fa-brands fa-neos"></i>
+            <!-- <i class="fa-brands fa-neos"></i> -->
             <span class="text-base-content font-semibold text-2xl tracking-tight"> Nexus </span>
           </div>
         </div>
 
         <div class="text-center">
-          <h1 class="text-2xl font-bold text-gray-900 dark:text-base-content mb-1">
+          <h1 class="text-2xl font-bold text-base-content/70">
             Banco de Reactivos
           </h1>
-          <p class="text-sm text-base-content/50">Gestion de ??Banco de Reactivos</p>
+          <p class="text-sm text-base-content/50">Gestor de bancos para reactivos</p>
         </div>
       </div>
 
@@ -51,7 +51,7 @@ const handleSubmit = () => {
       <form @submit.prevent="handleSubmit" class="space-y-6">
         <!-- Usuario -->
         <div>
-          <label class="block text-sm font-medium text-base-content/50 mb-2"> Usuario </label>
+          <label class="block text-sm font-medium text-base-content/30 mb-2"> Usuario </label>
 
           <div class="relative group">
             <i
@@ -61,8 +61,8 @@ const handleSubmit = () => {
             <input
               v-model="username"
               type="text"
-              placeholder="Ej. 1234567"
-              class="w-full pl-10 pr-4 py-3 bg-white/50 dark:bg-black/20 border border-gray-300 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-all outline-none"
+              class="w-full pl-10 pr-4 py-3 bg-base-200/50 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary
+               text-base-content placeholder-gray-400 dark:placeholder-gray-500 transition-all outline-none"
             />
           </div>
         </div>
@@ -70,27 +70,25 @@ const handleSubmit = () => {
         <!-- Password -->
         <div>
           <div class="flex justify-between items-center mb-2">
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">
+            <label class="block text-sm font-medium text-base-content/30">
               Contraseña
             </label>
 
-            <a href="#" class="text-xs font-semibold text-primary hover:underline">
-              ¿Olvidaste tu contraseña?
-            </a>
+<a href="#" class="text-xs font-semibold text-primary hover:underline"> ¿Olvidaste tu contraseña? </a>
           </div>
 
           <div class="relative group">
-            <i
+            <!-- <i
               class="fa-regular fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors"
-            ></i>
+            ></i> -->
+            <i class="fas fa-key absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors"></i>
 
             <input
               v-model="password"
               :type="showPassword ? 'text' : 'password'"
-              placeholder="••••••••"
-              class="w-full pl-10 pr-12 py-3 bg-white/50 dark:bg-black/20 border border-gray-300 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-all outline-none"
+              class="w-full pl-10 pr-4 py-3 bg-base-200/50 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary
+               text-base-content placeholder-gray-400 dark:placeholder-gray-500 transition-all outline-none""
             />
-
             <!-- Toggle Password -->
             <button
               type="button"
@@ -99,6 +97,7 @@ const handleSubmit = () => {
             >
               <i :class="showPassword ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye'"></i>
             </button>
+
           </div>
         </div>
 
@@ -139,6 +138,7 @@ const handleSubmit = () => {
       </div>
     </div>
   </div>
+  <router-view></router-view>
 </template>
 
 <style scoped>

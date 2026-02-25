@@ -12,6 +12,11 @@ export const loginGenerico: RouteRecordRaw[] = [
         name: 'Ingresar',
         component: () => import('../views/ingreso.vue'),
       },
+      {
+        path: 'enviar-correo',
+        name: 'EnviarCorreo',
+        component: () => import('../views/enviodecorreo.vue'),
+      },
     ],
   },
 ]
