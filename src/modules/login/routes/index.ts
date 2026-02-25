@@ -6,6 +6,12 @@ export const loginGenerico: RouteRecordRaw[] = [
     path: '/login',
     name: 'Login',
     component: loginPrincipal,
-    // children: []
+    children: [
+      {
+        path: 'ingresar',
+        name: 'Ingresar',
+        component: () => import('../views/ingreso.vue'),
+      },
+    ],
   },
 ]
