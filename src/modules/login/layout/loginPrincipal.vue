@@ -1,11 +1,19 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+  import { computed } from 'vue'
+  import { useRoute } from 'vue-router'
+  const route = useRoute()
 
-const toggleTheme = () => {
-  const html = document.documentElement
-  const current = html.getAttribute('data-theme')
-  html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark')
-}
+  const transitionName = computed(() => {
+    const order = (route.meta.order as number) || 0
+
+    if (order === 2) return 'slide-left'
+    return 'slide-right'
+  })
+  const toggleTheme = () => {
+    const html = document.documentElement
+    const current = html.getAttribute('data-theme')
+    html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark')
+  }
 </script>
 
 <template>
@@ -15,7 +23,7 @@ const toggleTheme = () => {
     <div class="mesh-glow mesh-glow-secondary"></div>
   </div>
   <!-- <button class="btn btn-primary fixed top-5 right-5" @click="toggleTheme">Cambiar tema</button> -->
-  <label class="swap swap-rotate fixed top-5 right-5 cursor-pointer z-50 btn-circle glass">
+  <label class="swap swap-rotate fixed top-5 right-5 cursor-pointer z-50 btn-circle">
     <!-- this hidden checkbox controls the state -->
     <input type="checkbox" @change="toggleTheme" class="theme-controller" value="dark" />
 
@@ -42,79 +50,116 @@ const toggleTheme = () => {
       />
     </svg>
   </label>
-  <div class="relative z-10 min-h-screen flex items-center justify-center px-6">
-    <router-view></router-view>
+  <div class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <router-view v-slot="{ Component }">
+      <transition :name="transitionName" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
 </template>
+<style>
+  /*  Cuando vas hacia adelante */
+  .slide-left-enter-active,
+  .slide-left-leave-active {
+    transition: all 0.35s ease;
+  }
+
+  .slide-left-enter-from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  .slide-left-leave-to {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  /* Cuando regresas */
+  .slide-right-enter-active,
+  .slide-right-leave-active {
+    transition: all 0.35s ease;
+  }
+
+  .slide-right-enter-from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  .slide-right-leave-to {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+</style>
 
 <style scoped>
-.background-wrapper {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
+  .background-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
 
-/* ========================= */
-/* DARK MODE — EXACTO       */
-/* ========================= */
+  /* ========================= */
+  /* DARK MODE — EXACTO       */
+  /* ========================= */
 
-.mesh-base {
-  position: absolute;
-  inset: 0;
+  .mesh-base {
+    position: absolute;
+    inset: 0;
 
-  background-color: #020617;
+    background-color: #020617;
 
-  background-image:
-    radial-gradient(at 0% 0%, hsla(220, 100%, 15%, 1) 0, transparent 50%),
-    radial-gradient(at 100% 0%, hsla(20, 90%, 35%, 1) 0, transparent 50%),
-    radial-gradient(at 100% 100%, hsla(210, 100%, 45%, 1) 0, transparent 50%),
-    radial-gradient(at 0% 100%, hsla(230, 100%, 10%, 1) 0, transparent 50%);
+    background-image:
+      radial-gradient(at 0% 0%, hsla(220, 100%, 15%, 1) 0, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(20, 90%, 35%, 1) 0, transparent 50%),
+      radial-gradient(at 100% 100%, hsla(210, 100%, 45%, 1) 0, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(230, 100%, 10%, 1) 0, transparent 50%);
 
-  transition: all 0.5s ease;
-}
+    transition: all 0.5s ease;
+  }
 
-/* ========================= */
-/* LIGHT MODE — EXACTO      */
-/* ========================= */
+  /* ========================= */
+  /* LIGHT MODE — EXACTO      */
+  /* ========================= */
 
-[data-theme='light'] .mesh-base {
-  background-color: #cbd5e1; /* gris frío, nada blanco puro */
+  [data-theme='light'] .mesh-base {
+    background-color: #cbd5e1; /* gris frío, nada blanco puro */
 
-  background-image:
-    radial-gradient(at 0% 0%, hsla(220, 100%, 55%, 0.95) 0, transparent 55%),
-    radial-gradient(at 100% 0%, hsla(20, 95%, 60%, 0.9) 0, transparent 55%),
-    radial-gradient(at 100% 100%, hsla(210, 100%, 60%, 0.85) 0, transparent 55%),
-    radial-gradient(at 0% 100%, hsla(230, 90%, 50%, 0.8) 0, transparent 55%);
-}
+    background-image:
+      radial-gradient(at 0% 0%, hsla(220, 100%, 55%, 0.95) 0, transparent 55%),
+      radial-gradient(at 100% 0%, hsla(20, 95%, 60%, 0.9) 0, transparent 55%),
+      radial-gradient(at 100% 100%, hsla(210, 100%, 60%, 0.85) 0, transparent 55%),
+      radial-gradient(at 0% 100%, hsla(230, 90%, 50%, 0.8) 0, transparent 55%);
+  }
 
-/* ========================= */
-/* GLOWS EXACTOS            */
-/* ========================= */
+  /* ========================= */
+  /* GLOWS EXACTOS            */
+  /* ========================= */
 
-.mesh-glow {
-  position: absolute;
-  border-radius: 9999px;
-  pointer-events: none;
-}
+  .mesh-glow {
+    position: absolute;
+    border-radius: 9999px;
+    pointer-events: none;
+  }
 
-/* Azul inferior */
-.mesh-glow-primary {
-  width: 320px;
-  height: 320px;
-  background: rgba(30, 64, 175, 0.2);
-  bottom: -80px;
-  left: -80px;
-  filter: blur(100px);
-}
+  /* Azul inferior */
+  .mesh-glow-primary {
+    width: 320px;
+    height: 320px;
+    background: rgba(30, 64, 175, 0.2);
+    bottom: -80px;
+    left: -80px;
+    filter: blur(100px);
+  }
 
-/* Naranja lateral */
-.mesh-glow-secondary {
-  width: 260px;
-  height: 260px;
-  background: rgba(245, 158, 11, 0.1);
-  top: 25%;
-  right: -80px;
-  filter: blur(80px);
-}
+  /* Naranja lateral */
+  .mesh-glow-secondary {
+    width: 260px;
+    height: 260px;
+    background: rgba(245, 158, 11, 0.1);
+    top: 25%;
+    right: -80px;
+    filter: blur(80px);
+  }
 </style>
