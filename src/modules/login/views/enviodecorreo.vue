@@ -1,15 +1,28 @@
 <script setup lang="ts">
   import { ref } from 'vue'
+  import { useForm } from 'vee-validate'
+  import { z } from 'zod'
+  import { toTypedSchema } from '@vee-validate/zod'
 
-  const correo = ref('')
-  const username = ref('')
+  const correoSchema = z.object({
+    username: z.string().min(1, 'El usuario es requerido'),
+    correo: z.string().email('El correo no es válido')
+  })
+  type CorreoForm = z.infer<typeof correoSchema>
+  const { handleSubmit, errors, meta, isSubmitting, defineField } = useForm<CorreoForm>({
+    validationSchema: toTypedSchema(correoSchema),
+    initialValues: {
+      username: '',
+      correo: ''
+    }
+  })
 
-  const handleSubmit = () => {
-    console.log({
-      correo: correo.value,
-      username: username.value
-    })
-  }
+  const [username, usernameAttributes] = defineField('username')
+  const [correo, correoAttributes] = defineField('correo')
+
+  const onSubmit = handleSubmit(formValues => {
+    console.log('Formulario válido:', formValues)
+  })
 </script>
 
 <template>
@@ -39,7 +52,7 @@
       </div>
 
       <!-- FORM -->
-      <form @submit.prevent="handleSubmit" class="space-y-6">
+      <form @submit.prevent="onSubmit" class="space-y-6">
         <!-- Usuario -->
         <div>
           <label class="block text-sm font-medium text-base-content/30 mb-2"> Usuario </label>
@@ -51,10 +64,21 @@
 
             <input
               v-model="username"
+              v-bind="usernameAttributes"
               type="text"
-              required
-              class="validator w-full pl-10 pr-4 py-3 bg-base-200/50 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-base-content placeholder-gray-400 dark:placeholder-gray-500 transition-all outline-none"
+              :class="[
+                'w-full pl-10 pr-4 py-3 bg-base-200/50 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-base-content placeholder-gray-400 dark:placeholder-gray-500 transition-all outline-none',
+                {
+                  'border border-red-500 focus:ring-red-500 focus:border-red-500': errors.username
+                }
+              ]"
             />
+            <span
+              v-if="errors.username && meta.touched"
+              class="text-red-500 text-sm absolute left-0 -bottom-5"
+            >
+              {{ errors.username }}
+            </span>
           </div>
         </div>
         <!-- Correo -->
@@ -70,19 +94,32 @@
 
             <input
               v-model="correo"
+              v-bind="correoAttributes"
               type="email"
-              required
-              class="validator w-full pl-10 pr-4 py-3 bg-base-200/50 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-base-content placeholder-gray-400 dark:placeholder-gray-500 transition-all outline-none"
+              :class="[
+                'w-full pl-10 pr-4 py-3 bg-base-200/50 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-base-content placeholder-gray-400 dark:placeholder-gray-500 transition-all outline-none',
+                {
+                  'border border-red-500 focus:ring-red-500 focus:border-red-500': errors.correo
+                }
+              ]"
             />
+            <span
+              v-if="errors.correo && meta.touched"
+              class="text-red-500 text-sm absolute left-0 -bottom-5"
+            >
+              {{ errors.correo }}
+            </span>
           </div>
         </div>
 
         <!-- Button -->
         <button
           type="submit"
+          :disabled="isSubmitting"
           class="w-full py-4 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl shadow-lg shadow-primary/30 transition-all active:scale-[0.98]"
         >
-          Enviar Solicitud
+          <span v-if="isSubmitting">Enviando correo...</span>
+          <span v-else>Enviar Solicitud</span>
         </button>
       </form>
 

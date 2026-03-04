@@ -3,10 +3,23 @@
   import { useForm } from 'vee-validate'
   import { z } from 'zod'
 
-  const restaurarContrasenaSchema = {
-    usuario: z.string().nonempty('El usuario es requerido'),
-    correo: z.string().email('El correo no es válido')
-  }
+  const resetearSchema = z
+    .object({
+      contrasena: z
+        .string()
+        .min(8, 'La contraseña debe tener al menos 8 caracteres')
+        .regex(/[A-Z]/, 'La contraseña debe contener al menos una letra mayúscula')
+        .regex(/[a-z]/, 'La contraseña debe contener al menos una letra minúscula')
+        .regex(/[0-9]/, 'La contraseña debe contener al menos un número')
+        .regex(
+          /[@$!%*?&]/,
+          'La contraseña debe contener al menos un carácter especial (@, $, !, %, *, ?, &)'
+        ),
+      confirmacion: z.string()
+    })
+    .refine(data => data.contrasena === data.confirmacion, {
+      message: 'Las contraseñas no coinciden'
+    })
 
   const onSubmit = () => {
     console.log('Aqui va algo para enviar la solicitud de restauración de contraseña')
