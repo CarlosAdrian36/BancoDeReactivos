@@ -16,7 +16,7 @@
   }
   type LoginForm = z.infer<typeof loginSchema>
 
-  const { handleSubmit, errors, values, defineField } = useForm<LoginForm>({
+  const { handleSubmit, errors, meta, defineField, isSubmitting } = useForm<LoginForm>({
     validationSchema: toTypedSchema(loginSchema),
     initialValues: {
       usuario: '',
@@ -26,7 +26,11 @@
   const [usuario, usaurioatributos] = defineField('usuario')
   const [contrasena, contrasenaatributos] = defineField('contrasena')
   const onSubmit = handleSubmit(formValues => {
-    console.log('Formulario válido:', formValues)
+    setTimeout(() => {
+      isSubmitting.value = false
+      console.log('Simulando envío de formulario...')
+      console.log('Formulario válido:', formValues)
+    }, 1000)
   })
 </script>
 
@@ -69,6 +73,7 @@
             ></i>
 
             <input
+              v-model="usuario"
               v-bind="usaurioatributos"
               type="text"
               :class="[
@@ -102,6 +107,7 @@
             ></i>
 
             <input
+              v-model="contrasena"
               v-bind="contrasenaatributos"
               :type="showPassword ? 'text' : 'password'"
               :class="[
@@ -111,7 +117,10 @@
                 }
               ]"
             />
-            <span class="text-red-500 text-sm absolute left-0 -bottom-5">
+            <span
+              v-if="errors.contrasena && meta.touched"
+              class="text-red-500 text-sm absolute left-0 -bottom-5"
+            >
               {{ errors.contrasena }}
             </span>
             <!-- Toggle Password -->
@@ -126,11 +135,19 @@
         </div>
 
         <!-- Button -->
-        <button
+        <!-- <button
           type="submit"
           class="w-full py-4 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl shadow-lg shadow-primary/30 transition-all active:scale-[0.98]"
         >
           Iniciar Sesión
+        </button> -->
+        <button
+          type="submit"
+          :disabled="isSubmitting"
+          class="w-full py-4 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl shadow-lg shadow-primary/30 transition-all active:scale-[0.98]"
+        >
+          <span v-if="isSubmitting">Iniciando sesión...</span>
+          <span v-else>Iniciar Sesión</span>
         </button>
       </form>
 
