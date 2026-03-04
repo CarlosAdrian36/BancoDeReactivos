@@ -19,6 +19,12 @@ export const loginGenerico: RouteRecordRaw[] = [
         name: 'EnviarCorreo',
         component: () => import('../views/enviodecorreo.vue'),
         meta: { order: 2 }
+      },
+      {
+        path: 'restaurar-contrasena',
+        name: 'RestaurarContrasena',
+        component: () => import('../views/restaurar.vue'),
+        meta: { order: 3 }
       }
     ]
   }

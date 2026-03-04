@@ -3,6 +3,7 @@
   import { useForm } from 'vee-validate'
   import { z } from 'zod'
   import { toTypedSchema } from '@vee-validate/zod'
+
   const loginSchema = z.object({
     usuario: z.string().min(1, 'El usuario es requerido'),
     contrasena: z.string().min(1, 'La contraseña es requerida')
@@ -13,8 +14,9 @@
   const togglePassword = () => {
     showPassword.value = !showPassword.value
   }
+  type LoginForm = z.infer<typeof loginSchema>
 
-  const { handleSubmit, errors, values, defineField } = useForm({
+  const { handleSubmit, errors, values, defineField } = useForm<LoginForm>({
     validationSchema: toTypedSchema(loginSchema),
     initialValues: {
       usuario: '',
@@ -67,7 +69,6 @@
             ></i>
 
             <input
-              v-model="usuario"
               v-bind="usaurioatributos"
               type="text"
               :class="[
@@ -101,7 +102,6 @@
             ></i>
 
             <input
-              v-model="contrasena"
               v-bind="contrasenaatributos"
               :type="showPassword ? 'text' : 'password'"
               :class="[
