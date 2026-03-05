@@ -1,1 +1,1 @@
-<template>aqui van carpetas</template>
+<template>aqui van todos</template>

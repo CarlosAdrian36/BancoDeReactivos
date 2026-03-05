@@ -16,7 +16,25 @@ const router = createRouter({
     {
       path: '/home',
       name: 'home',
-      component: LayoutPrincipal
+      redirect: '/home/todo', // Redirige a la ruta por defecto dentro de /home
+      component: LayoutPrincipal,
+      children: [
+        {
+          path: 'todo',
+          name: 'Todo',
+          component: () => import('@/modules/principal/views/todo.vue')
+        },
+        {
+          path: 'carpetas',
+          name: 'Carpetas',
+          component: () => import('@/modules/principal/views/carpetas.vue')
+        },
+        {
+          path: 'gestionMiembros',
+          name: 'Gestion de Miembros',
+          component: () => import('@/modules/principal/views/gestionDeMiembros.vue')
+        }
+      ]
     }
   ]
 })
