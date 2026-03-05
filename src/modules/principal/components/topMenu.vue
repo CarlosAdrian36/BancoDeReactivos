@@ -1,7 +1,6 @@
 <script setup lang="ts">
-  import Sidebarclose from '@/common/icons/sidebarclose.vue'
-  import Sidebaropen from '@/common/icons/sidebaropen.vue'
-
+  import sidebarclose from '@/common/iconscustom/sidebarclose.vue'
+  import sidebaropen from '@/common/iconscustom/sidebaropen.vue'
   const emit = defineEmits(['toggle'])
 </script>
 
@@ -14,12 +13,12 @@
 
         <!-- hamburger icon -->
         <div class="swap-on">
-          <Sidebarclose />
+          <sidebarclose />
         </div>
 
         <!-- close icon -->
         <div class="swap-off">
-          <Sidebaropen />
+          <sidebaropen />
         </div>
       </label>
     </div>
