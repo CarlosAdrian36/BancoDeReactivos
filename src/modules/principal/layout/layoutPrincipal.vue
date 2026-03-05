@@ -7,26 +7,21 @@
   const toggleDrawer = () => {
     isDrawerOpen.value = !isDrawerOpen.value
   }
-
-  // const closeDrawer = () => {
-  //   isDrawerOpen.value = false
-  // }
 </script>
-<!-- <TopMenu2 @toggle="toggleDrawer" />  -->
 
 <template>
   <div class="flex flex-col h-screen overflow-hidden">
     <topMenu @toggle="toggleDrawer" />
 
     <div class="drawer lg:drawer-open flex-1">
-      <input id="my-drawer-4" type="checkbox" class="drawer-toggle" v-model="isDrawerOpen" />
+      <input type="checkbox" class="drawer-toggle" v-model="isDrawerOpen" />
 
       <div class="drawer-content">
-        <div class="p-4">Page Content</div>
+        <div class="p-4"><RouterView /></div>
       </div>
 
       <div class="drawer-side">
-        <label for="my-drawer-4" class="drawer-overlay"></label>
+        <label class="drawer-overlay" aria-level="close sidebar"></label>
 
         <aside
           class="flex h-full flex-col bg-base-100 border-r border-primary/10 transition-all duration-300 shrink-0 overflow-hidden"
@@ -35,13 +30,14 @@
           <!-- 🔹 Sección superior -->
           <div class="flex flex-col gap-1 p-6">
             <p
-              v-if="isDrawerOpen"
               class="px-3 text-[11px] font-bold uppercase tracking-widest text-primary/40 mb-3"
+              v-if="isDrawerOpen"
             >
               Navegacion
             </p>
 
             <!-- Item -->
+
             <button
               class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-base-200 cursor-pointer"
             >
