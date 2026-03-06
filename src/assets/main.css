@@ -1,36 +1,10 @@
 @import 'tailwindcss';
-@plugin 'daisyui' {
+
+@plugin "daisyui" {
   themes: all;
 }
 
-/* @plugin "daisyui/theme" {
-  name: 'mytheme';
-  default: true;
-  color-scheme: light;
-  --color-primary: green;
-  --color-secondary: teal;
-},
-
-plugins: [require("daisyui")],
-  daisyui: {
-    themes: [
-      {
-        nexuslight: {
-          primary: "#1e40af",
-          secondary: "#f59e0b",
-          accent: "#2563eb",
-          neutral: "#1f2937",
-          "base-100": "#f1f5f9",
-        },
-      },
-      {
-        nexusdark: {
-          primary: "#3b82f6",
-          secondary: "#f59e0b",
-          accent: "#60a5fa",
-          neutral: "#0f172a",
-          "base-100": "#020617",
-        },
-      },
-    ],
-  }, */
+@theme {
+  --font-sans: 'Lexend', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
