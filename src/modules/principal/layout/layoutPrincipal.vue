@@ -37,7 +37,7 @@
                   'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
                   isActive
                     ? 'bg-primary-content text-primary'
-                    : 'text-base-content/75 hover:bg-base-200'
+                    : 'text-(--color-texto) hover:bg-base-200'
                 ]"
               >
                 <i class="fa-regular fa-house"></i>
@@ -52,7 +52,7 @@
                   'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
                   isActive
                     ? 'bg-primary-content text-primary'
-                    : 'text-base-content/75 hover:bg-base-200'
+                    : 'text-(--color-texto) hover:bg-base-200'
                 ]"
               >
                 <i class="fa-regular fa-folder-user"></i>
@@ -67,7 +67,7 @@
                   'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
                   isActive
                     ? 'bg-primary-content text-primary'
-                    : 'text-base-content/75 hover:bg-base-200'
+                    : 'text-(--color-texto) hover:bg-base-200'
                 ]"
               >
                 <i class="fa-regular fa-user-group"></i>

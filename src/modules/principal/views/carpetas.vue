@@ -12,11 +12,10 @@
     </div>
   </div>
 
-  <button class="btn btn-primary">Botón</button>
+  <p class="text-(--color-texto) mt-2 mb-4">
+    Gestione sus bancosde de preguntas y carpetas de estudio de manera centralizada
+  </p>
 
-  <div class="text-primary font-bold">Texto Primary</div>
-
-  <h1 class="font-sans text-sm text-">Hola mund Inicio</h1>
   <code class="font-mono">ID-2391</code>
   <span class="font-mono text-sm">USR-98213</span>
 </template>
