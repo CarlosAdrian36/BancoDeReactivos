@@ -23,9 +23,9 @@
           class="flex h-full flex-col bg-base-100 border-r border-primary/10 transition-all duration-300 shrink-0 overflow-hidden"
           :class="isDrawerOpen ? 'w-64 opacity-100' : 'w-0 opacity-0 '"
         >
-          <div class="flex flex-col gap-1 p-6">
+          <div class="flex flex-col gap-1 p-6 space-y-1">
             <p
-              class="px-3 text-[11px] font-bold uppercase tracking-widest text-primary/40 mb-3"
+              class="px-3 text-[11px] font-bold uppercase tracking-widest text-primary/40 mb-2"
               v-if="isDrawerOpen"
             >
               Navegacion
@@ -40,7 +40,7 @@
                     : 'text-base-content/75 hover:bg-base-200'
                 ]"
               >
-                <span><i class="fa-solid fa-house"></i></span>
+                <i class="fa-regular fa-house"></i>
                 <span class="text-sm font-medium">Inicio</span>
               </a>
             </router-link>
@@ -55,7 +55,7 @@
                     : 'text-base-content/75 hover:bg-base-200'
                 ]"
               >
-                <div class="w-5 h-5"><i class="fa-solid fa-folder-user"></i></div>
+                <i class="fa-regular fa-folder-user"></i>
                 <span>Mis Carpetas</span>
               </a>
             </router-link>
@@ -70,7 +70,7 @@
                     : 'text-base-content/75 hover:bg-base-200'
                 ]"
               >
-                <div class="w-5 h-5"><i class="fa-solid fa-users"></i></div>
+                <i class="fa-regular fa-user-group"></i>
                 <span>Colaboradores</span>
               </a>
             </router-link>
