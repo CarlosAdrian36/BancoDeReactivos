@@ -1,0 +1,6 @@
+text-base-content/75  --> para letras grises 
+
+
+  <code class="font-mono">ID-2391</code>                |
+  <span class="font-mono text-sm">USR-98213</span>      -> estos son para numeros id o codigos
+  

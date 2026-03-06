@@ -8,3 +8,11 @@
   --font-sans: 'Lexend', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
+
+@plugin "daisyui/theme" {
+  name: 'light';
+
+  --color-primary: #2563eb;
+
+  --color-primary-content: #e8f1fd;
+}

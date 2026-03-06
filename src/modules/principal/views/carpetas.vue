@@ -1,8 +1,22 @@
 <template>
-  aqui van c arpetas
+  <div class="flex flex-row">
+    <div class="basis-10/12 border-2">
+      <h1 class="text-4xl font-bold">Prueba Lexend Inicio Colaboradores</h1>
+    </div>
+    <div class="basis-2/12 border-2 justify-center items-center flex">
+      <button
+        class="btn btn-primary hover:bg-primary/90 rounded-lg flex items-center gap-2 shadow-lg shadow-primary/20 transition-all duration-300"
+      >
+        <i class="fa-regular fa-folder-medical"></i>Agregar Carpeta
+      </button>
+    </div>
+  </div>
 
-  <h1 class="text-4xl font-bold">Prueba Lexend Inicio Colaboradores</h1>
-  <h1 class="font-sans text-3xl">Hola mund Inicio</h1>
+  <button class="btn btn-primary">Botón</button>
+
+  <div class="text-primary font-bold">Texto Primary</div>
+
+  <h1 class="font-sans text-sm text-">Hola mund Inicio</h1>
   <code class="font-mono">ID-2391</code>
   <span class="font-mono text-sm">USR-98213</span>
 </template>
