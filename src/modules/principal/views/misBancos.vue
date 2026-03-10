@@ -18,21 +18,37 @@
   <!-- <code class="font-mono">ID-2391</code>
   <span class="font-mono text-sm">USR-98213</span> -->
   <!--  -->
-  <div class="tabs tabs-lg tabs-border">
-    <button
-      class="tab"
-      @click="tab = 'todos'"
-      :class="{ 'tab-active text-primary ': tab === 'todos' }"
-    >
-      Todos
-    </button>
-    <button
-      class="tab px-8"
-      @click="tab = 'carpetas'"
-      :class="{ 'tab-active text-primary ': tab === 'carpetas' }"
-    >
-      Carpetas
-    </button>
+  <div class="flex flex-row justify-between">
+    <div class="tabs tabs-lg tabs-border border-2">
+      <button
+        class="tab"
+        @click="tab = 'todos'"
+        :class="{ 'tab-active text-primary ': tab === 'todos' }"
+      >
+        Todos
+      </button>
+      <button
+        class="tab px-8"
+        @click="tab = 'carpetas'"
+        :class="{ 'tab-active text-primary ': tab === 'carpetas' }"
+      >
+        Carpetas
+      </button>
+    </div>
+    <div>
+      <ul class="menu menu-horizontal bg-base-200 rounded-box">
+        <li>
+          <a>
+            <i class="fa-regular fa-list"></i>
+          </a>
+        </li>
+        <li>
+          <a>
+            <i class="fa-regular fa-grid"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="flex border-t border-base-300 pt-5">
     <KeepAlive>
