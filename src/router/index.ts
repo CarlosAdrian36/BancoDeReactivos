@@ -8,7 +8,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/login' // 👈 ESTA ES LA CLAVE
+      redirect: '/login'
     },
     ...authRoutes,
     ...loginGenerico,
@@ -16,18 +16,18 @@ const router = createRouter({
     {
       path: '/home',
       name: 'home',
-      redirect: '/home/todo', // Redirige a la ruta por defecto dentro de /home
+      redirect: '/home/todo',
       component: LayoutPrincipal,
       children: [
         {
           path: 'todo',
           name: 'Todo',
-          component: () => import('@/modules/principal/views/todo.vue')
+          component: () => import('@/modules/principal/views/inicio.vue')
         },
         {
           path: 'carpetas',
           name: 'Carpetas',
-          component: () => import('@/modules/principal/views/carpetas.vue')
+          component: () => import('@/modules/principal/views/misBancos.vue')
         },
         {
           path: 'gestionMiembros',

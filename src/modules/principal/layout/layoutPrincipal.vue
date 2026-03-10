@@ -10,73 +10,80 @@
 </script>
 
 <template>
-  <div class="flex flex-col h-screen overflow-hidden">
-    <topMenu @toggle="toggleDrawer" />
-    <div class="drawer lg:drawer-open flex-1">
-      <input type="checkbox" class="drawer-toggle" v-model="isDrawerOpen" />
-      <div class="drawer-content flex flex-col">
-        <div class="p-8 bg-base-200 flex-1"><router-view></router-view></div>
-      </div>
+  <div class="flex flex-col h-screen">
+    <!-- TOP MENU -->
+    <topMenu @toggle="toggleDrawer" class="z-50" />
 
-      <div class="drawer-side">
-        <aside
-          class="flex h-full flex-col bg-base-100 border-r border-primary/10 transition-all duration-300 shrink-0 overflow-hidden"
-          :class="isDrawerOpen ? 'w-64 opacity-100' : 'w-0 opacity-0 '"
+    <!-- CONTENEDOR -->
+    <div class="flex flex-1 overflow-hidden">
+      <!-- SIDEBAR -->
+      <aside
+        class="bg-base-100 border-r border-primary/10 transition-all duration-300 overflow-y-auto fixed lg:static top-16 left-0 h-[calc(100vh-4rem)] z-40"
+        :class="isDrawerOpen ? 'w-64' : 'w-0 '"
+      >
+        <div
+          class="flex flex-col gap-1 p-4 transition-opacity duration-200"
+          :class="isDrawerOpen ? 'opacity-100' : 'opacity-0 '"
         >
-          <div class="flex flex-col gap-1 p-6 space-y-1">
-            <p
-              class="px-3 text-[11px] font-bold uppercase tracking-widest text-primary/40 mb-2"
-              v-if="isDrawerOpen"
+          <p
+            v-if="isDrawerOpen"
+            class="px-3 text-[11px] font-bold uppercase tracking-widest text-primary/40 mb-2"
+          >
+            Navegación
+          </p>
+
+          <!-- LINK -->
+          <router-link v-slot="{ isActive, navigate }" :to="{ name: 'Todo' }">
+            <a
+              @click="navigate"
+              :class="[
+                'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                isActive
+                  ? 'bg-primary-content text-primary'
+                  : 'text-(--color-texto) hover:bg-base-200'
+              ]"
             >
-              Navegacion
-            </p>
-            <router-link v-slot="{ isActive, navigate }" :to="{ name: 'Todo' }">
-              <a
-                @click="navigate"
-                :class="[
-                  'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
-                  isActive
-                    ? 'bg-primary-content text-primary'
-                    : 'text-(--color-texto) hover:bg-base-200'
-                ]"
-              >
-                <i class="fa-regular fa-house"></i>
-                <span class="text-sm font-medium">Inicio</span>
-              </a>
-            </router-link>
+              <i class="fa-regular fa-house text-xl"></i>
+              <span v-if="isDrawerOpen">Inicio</span>
+            </a>
+          </router-link>
 
-            <router-link v-slot="{ isActive, navigate }" :to="{ name: 'Carpetas' }">
-              <a
-                @click="navigate"
-                :class="[
-                  'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
-                  isActive
-                    ? 'bg-primary-content text-primary'
-                    : 'text-(--color-texto) hover:bg-base-200'
-                ]"
-              >
-                <i class="fa-regular fa-folder-user"></i>
-                <span>Mis Carpetas</span>
-              </a>
-            </router-link>
+          <router-link v-slot="{ isActive, navigate }" :to="{ name: 'Carpetas' }">
+            <a
+              @click="navigate"
+              :class="[
+                'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                isActive
+                  ? 'bg-primary-content text-primary'
+                  : ' text-(--color-texto) hover:bg-base-200'
+              ]"
+            >
+              <i class="fa-regular fa-folder-user text-xl"></i>
+              <span v-if="isDrawerOpen">Mis Bancos</span>
+            </a>
+          </router-link>
 
-            <router-link v-slot="{ isActive, navigate }" :to="{ name: 'Gestion de Miembros' }">
-              <a
-                @click="navigate"
-                :class="[
-                  'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
-                  isActive
-                    ? 'bg-primary-content text-primary'
-                    : 'text-(--color-texto) hover:bg-base-200'
-                ]"
-              >
-                <i class="fa-regular fa-user-group"></i>
-                <span>Colaboradores</span>
-              </a>
-            </router-link>
-          </div>
-        </aside>
-      </div>
+          <router-link v-slot="{ isActive, navigate }" :to="{ name: 'Gestion de Miembros' }">
+            <a
+              @click="navigate"
+              :class="[
+                'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                isActive
+                  ? 'bg-primary-content text-primary'
+                  : 'text-(--color-texto) hover:bg-base-200'
+              ]"
+            >
+              <i class="fa-regular fa-user-group text-xl"></i>
+              <span v-if="isDrawerOpen">Colaboradores</span>
+            </a>
+          </router-link>
+        </div>
+      </aside>
+
+      <!-- CONTENIDO -->
+      <main class="flex-1 overflow-y-auto bg-base-200 p-8">
+        <router-view />
+      </main>
     </div>
   </div>
 </template>
