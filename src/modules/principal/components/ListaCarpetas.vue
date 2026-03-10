@@ -38,7 +38,7 @@
               </ul>
             </div>
           </div>
-
+          <!-- <code class="font-mono">ID-2391</code> -->
           <h2 class="text-sm font-bold line-clamp-3 min-w-0">
             {{ n.titulo }}
           </h2>
@@ -52,15 +52,55 @@
         class="card bg-base-100 border border-base-200 shadow-sm hover:shadow-md transition h-40 cursor-pointer"
       >
         <div class="card-body">
-          <div>
-            <div class="size-12 text-warning rounded-lg flex items-center justify-center">
+          <div class="flex flex-row">
+            <div class="size-12 text-warning rounded-lg flex">
               <i class="fa-regular fa-folder text-2xl"></i>
             </div>
-          </div>
 
-          <h2 class="text-sm font-bold line-clamp-3 min-w-0">
-            {{ n.titulo }}
-          </h2>
+            <h2 class="text-sm font-bold line-clamp-3 min-w-0">
+              {{ n.titulo }}
+            </h2>
+            <div class="dropdown">
+              <div tabindex="0" role="button" class="btn btn-ghost btn-sm">
+                <i class="fa-light fa-ellipsis-vertical"></i>
+              </div>
+              <ul
+                tabindex="-1"
+                class="dropdown-content menu bg-base-100 rounded-box z-1 w-30 p-2 shadow-sm"
+              >
+                <li class="pb-2">
+                  <button class="btn btn-soft btn-info">
+                    <i class="fa-regular fa-pen-to-square mr-2"></i>
+                    Editar
+                  </button>
+                </li>
+                <li>
+                  <button class="btn btn-soft btn-error">
+                    <i class="fa-regular fa-trash-can mr-2"></i>
+                    Borrar
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <h1>
+              <span
+                class="badge badge-soft font-sans text-xs mt-1 mb-2"
+                :class="getMateriaColor(n.materia)"
+              >
+                {{ n.materia }}
+              </span>
+            </h1>
+            <span class="text-slate-400 text-xs">•</span>
+            <h1 class="font-mono text-(--color-texto) text-xs mt-2 mb-1">
+              {{ n.reactivos }}
+              <span class="font-sans">Bancos</span>
+            </h1>
+          </div>
+          <span class="font-sans text-xs text-(--color-texto) mt-1 mb-2">
+            {{ n.fecha }}
+          </span>
         </div>
       </div>
     </div>
@@ -310,4 +350,17 @@
       fecha: 'Hace 5 horas'
     }
   ]
+  const materiaColors: Record<string, string> = {
+    Biología: 'badge-success text-green-800',
+    Química: 'badge-warning text-yellow-800',
+    Física: 'badge-info text-blue-800',
+    Matemáticas: 'badge-primary text-purple-800',
+    Historia: 'badge-secondary text-gray-800',
+    Literatura: 'badge-accent text-pink-800',
+    Lenguaje: 'badge-error'
+  }
+
+  const getMateriaColor = (materia: string) => {
+    return materiaColors[materia] || 'badge-neutral'
+  }
 </script>
