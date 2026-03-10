@@ -45,6 +45,17 @@
         </div>
       </div>
       <!-- CARD 2 -->
+      <div
+        class="card border border-base-200 shadow-sm hover:shadow-md transition h-40 cursor-pointer group"
+      >
+        <div
+          class="card-body bg-base-100 flex flex-col items-center justify-center gap-2 border-2 border-dashed border-primary/40 rounded-xl group-hover:border-primary transition"
+        >
+          <i class="fa-regular fa-folder-plus text-3xl text-primary"></i>
+
+          <span class="text-sm font-medium text-primary"> Agregar Carpeta </span>
+        </div>
+      </div>
 
       <div
         v-for="n in items"
