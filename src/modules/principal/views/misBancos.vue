@@ -3,13 +3,6 @@
     <div class="basis-10/12">
       <h1 class="text-4xl font-bold text">Administración de Bancos</h1>
     </div>
-    <div class="basis-2/12 justify-center items-center flex">
-      <button
-        class="btn btn-primary hover:bg-primary/90 rounded-lg flex items-center gap-2 shadow-lg shadow-primary/20 transition-all duration-300"
-      >
-        <i class="fa-regular fa-folder-medical"></i>Agregar Carpeta
-      </button>
-    </div>
   </div>
 
   <p class="text-(--color-texto) mt-2 mb-4">
@@ -19,7 +12,7 @@
   <span class="font-mono text-sm">USR-98213</span> -->
   <!--  -->
   <div class="flex flex-row justify-between">
-    <div class="tabs tabs-lg tabs-border border-2">
+    <div class="tabs tabs-lg tabs-border">
       <button
         class="tab"
         @click="tab = 'todos'"

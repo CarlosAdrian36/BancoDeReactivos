@@ -16,17 +16,17 @@ const router = createRouter({
     {
       path: '/home',
       name: 'home',
-      redirect: '/home/todo',
+      redirect: '/home/misBancos',
       component: LayoutPrincipal,
       children: [
         {
-          path: 'todo',
-          name: 'Todo',
+          path: 'inicio',
+          name: 'Inicio',
           component: () => import('@/modules/principal/views/inicio.vue')
         },
         {
-          path: 'carpetas',
-          name: 'Carpetas',
+          path: 'misBancos',
+          name: 'MisBancos',
           component: () => import('@/modules/principal/views/misBancos.vue')
         },
         {

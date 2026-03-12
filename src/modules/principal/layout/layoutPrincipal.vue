@@ -33,7 +33,7 @@
           </p>
 
           <!-- LINK -->
-          <router-link v-slot="{ isActive, navigate }" :to="{ name: 'Todo' }">
+          <router-link v-slot="{ isActive, navigate }" :to="{ name: 'Inicio' }">
             <a
               @click="navigate"
               :class="[
@@ -48,7 +48,7 @@
             </a>
           </router-link>
 
-          <router-link v-slot="{ isActive, navigate }" :to="{ name: 'Carpetas' }">
+          <router-link v-slot="{ isActive, navigate }" :to="{ name: 'MisBancos' }">
             <a
               @click="navigate"
               :class="[
