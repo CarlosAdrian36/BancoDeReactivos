@@ -10,8 +10,8 @@
     isDrawerOpen.value = !isDrawerOpen.value
   }
   const sidebarComponent = computed(() => {
-    const matched = route.matched
-    return matched[matched.length - 1]?.meta?.sidebar
+    const match = [...route.matched].reverse().find(r => r.meta.sidebar)
+    return match?.meta?.sidebar
   })
 </script>
 
@@ -30,10 +30,7 @@
           class="flex flex-col gap-1 p-4 transition-opacity duration-200"
           :class="isDrawerOpen ? 'opacity-100' : 'opacity-0 '"
         >
-          <p
-            v-if="isDrawerOpen"
-            class="px-3 text-[11px] font-bold uppercase tracking-widest text-primary/40 mb-2"
-          >
+          <p class="px-3 text-[11px] font-bold uppercase tracking-widest text-(--color-texto) mb-2">
             Navegación
           </p>
 

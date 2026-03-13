@@ -1,1 +1,3 @@
-<template>asdasd</template>
+<template>
+  <RouterView />
+</template>

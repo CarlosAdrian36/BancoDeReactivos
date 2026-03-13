@@ -43,6 +43,7 @@
       <div
         v-for="n in itemsall"
         :key="n.id"
+        @click="abrirCarpeta(n.id)"
         class="card bg-warning/10 border border-base-200 shadow-sm hover:shadow-md transition max-w-md cursor-pointer"
       >
         <div class="card-body">
@@ -60,6 +61,7 @@
               </div>
 
               <ul
+                @click.stop
                 tabindex="-1"
                 class="dropdown-content menu bg-base-100 rounded-box z-1 w-30 p-2 shadow-sm"
               >
@@ -246,6 +248,16 @@
 </template>
 
 <script setup lang="ts">
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter()
+
+  const abrirCarpeta = (id: number) => {
+    router.push({
+      name: 'CarpetaBanco',
+      params: { carpetaId: id }
+    })
+  }
   const materiaColors: Record<string, string> = {
     Biología: 'badge-success text-green-800',
     Química: 'badge-warning text-yellow-800',
