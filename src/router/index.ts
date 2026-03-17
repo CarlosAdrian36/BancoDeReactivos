@@ -15,12 +15,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'root',
+      redirect: '/contenedor/misBancos',
       component: LayoutPrincipla2,
       children: [
         {
           path: 'contenedor',
           name: 'Contenedor',
-          redirect: '/contenedor/misBancos',
           component: () => import('@/modules/home/views/contenedor.vue'),
           meta: { sidebar: navSideBar, requiresAuth: true },
           children: [
