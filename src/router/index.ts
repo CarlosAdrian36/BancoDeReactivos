@@ -1,7 +1,6 @@
 import { authRoutes } from '@/modules/auth/routes'
 import LayoutPrincipla2 from '@/modules/home/layout/layoutPrincipla2.vue'
 import { loginGenerico } from '@/modules/login/routes'
-import LayoutPrincipal from '@/modules/principal/layout/layoutPrincipal.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 import navSideBar from '@/modules/home/sidebars/navSideBar.vue'
@@ -32,13 +31,17 @@ const router = createRouter({
             {
               path: 'misBancos',
               name: 'MisBancos',
-              component: () => import('@/modules/home/views/misBancos.vue')
+              component: () => import('@/modules/home/views/misBancos.vue'),
+              meta: { breadcrumb: 'Mis Bancos' }
             },
             {
               path: 'misBancos/:carpetaId',
               name: 'CarpetaBanco',
               component: () => import('@/modules/carpeta/carpetaBanco.vue'),
-              meta: { sidebar: Carpetassidebar }
+              meta: {
+                breadcrumb: (route: any) => `Carpeta ${route.params.carpetaId}`,
+                sidebar: Carpetassidebar
+              }
             },
             {
               path: 'gestionMiembros',

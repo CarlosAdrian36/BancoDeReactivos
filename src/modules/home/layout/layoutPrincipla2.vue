@@ -2,6 +2,7 @@
   import { ref, computed } from 'vue'
   import { useRoute } from 'vue-router'
   import TopMenu from '@/modules/principal/components/topMenu.vue'
+  import Breadcrumbs from '@/modules/breadcrumbs/breadcrumbs.vue'
 
   const route = useRoute()
   const isDrawerOpen = ref(true)
@@ -39,7 +40,10 @@
       </aside>
 
       <!-- CONTENIDO -->
-      <main class="flex-1 overflow-y-auto p-6 bg-base-200"><RouterView /></main>
+      <main class="flex-1 overflow-y-auto p-6 bg-base-200">
+        <Breadcrumbs></Breadcrumbs>
+        <RouterView />
+      </main>
     </div>
   </div>
 </template>
